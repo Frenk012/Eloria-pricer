@@ -6,7 +6,7 @@ def calculate_processing(potion_id, amount, checkbox):
         "health di tier 1": 1,
         "health di tier 2": 2,
         "anthidot": 3,
-        "anthidot": 4,
+        "anthidot di tier 2": 4,
         "mending di tier 0": 5,
         "mending di tier 1": 6,
         "mending di tier 2": 7,

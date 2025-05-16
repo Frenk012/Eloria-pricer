@@ -46,11 +46,153 @@ def get_cost(potion_id, amount):
                 'brim powder', 1,
                 'carne marcia', 1,
             ],
-            [   # antidoto
+            [   # antidoto t2
+                'carbonella', 1,
+                'revival star', 0.5,
+                'boccette', 0.5,
+                'organic resin', 0.5,
+            ],
+            [   # Mending T0
                 'carbonella', 1,
                 'core fragment', 1,
                 'boccette', 1,
                 'brim powder', 1,
+            ],
+            [   # Mending T1
+                'carbonella', 1,
+                'core fragment', 1,
+                'boccette', 1,
+                'organic resin', 1,
+                'spider eye', 1,
+            ],
+            [   # Mending T2
+                'carbonella', 2,
+                'core fragment', 1,
+                'boccette', 1,
+                'organic resin', 1,
+                'membrane', 1,
+            ],
+            [   # slowness
+                'carbonella', 1,
+                'boccette', 1,
+                'core fragment', 1,
+            ],
+            [   # swiftness t1
+                'carbonella', 1,
+                'boccette', 1,
+                'core fragment', 1,
+            ],
+            [   # swiftness t2
+                'carbonella', 1,
+                'core fragment', 1,
+                'blaze powder', 1,
+                'item random', 1,
+            ],
+            [   # slow fall
+                'carbonella', 1,
+                'boccette', 1,
+                'core fragment', 1,
+            ],
+            [   # jump T1
+                'carbonella', 1,
+                'boccette', 1,
+                'core fragment', 1,
+            ],
+            [   # jump t2
+                'carbonella', 1,
+                'core fragment', 1,
+                'blaze powder', 1,
+                'item random', 1,
+            ],
+            [   # weakness
+                'carbonella', 1,
+                'boccette', 1,
+                'core fragment', 1,
+            ],
+            [   # revify
+                'carbonella', 1,
+                'boccette', 1,
+                'core fragment', 1,
+                'revival star', 1,
+            ],
+            [   # danno
+                'carbonella', 1,
+                'boccette', 1,
+                'core fragment', 1,
+                'spider eye', 1,
+            ],
+            [   # shrink
+                'carbonella', 1,
+                'boccette', 1,
+                'core fragment', 1,
+                'fungo marrone', 1,
+            ],
+            [   # levitation
+                'carbonella', 1,
+                'boccette', 1,
+                'core fragment', 1,
+                'ametista', 1,
+            ],
+            [   # grow
+                'carbonella', 1,
+                'boccette', 1,
+                'core fragment', 1,
+                'fungo rosso', 1,
+            ],
+            [   # poison
+                'carbonella', 1,
+                'boccette', 1,
+                'core fragment', 1,
+                'spider eye', 1,
+                'fungo marrone', 1,
+                'zucchero', 1,
+            ],
+            [   # invisibility
+                'carbonella', 2,
+                'boccette', 1,
+                'core fragment', 1,
+                'antracite', 1,
+                'item random', 1,
+            ],
+            [   # dolphin 
+                'carbonella', 2,
+                'boccette', 1,
+                'core fragment', 1,
+            ],
+            [   # combustion
+                'carbonella', 2,
+                'boccette', 1,
+                'core fragment', 1,
+            ],
+            [   # strength
+                'carbonella', 2,
+                'boccette', 1,
+                'core fragment', 1,
+            ],
+            [   # impact
+                'carbonella', 2,
+                'boccette', 1,
+                'core fragment', 1,
+            ],
+            [   # holy
+                'carbonella', 2,
+                'boccette', 1,
+                'core fragment', 1,
+            ],
+            [   # fire
+                'carbonella', 2,
+                'boccette', 1,
+                'core fragment', 1,
+            ],
+            [   # frost
+                'carbonella', 2,
+                'boccette', 1,
+                'core fragment', 1,
+            ],
+            [   # arcane
+                'carbonella', 2,
+                'boccette', 1,
+                'core fragment', 1,
             ]
         ]
         cost_resoult = [0,0,0]
