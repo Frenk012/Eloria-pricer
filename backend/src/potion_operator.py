@@ -194,8 +194,16 @@ def read_csv_file():
     
 def get_ingredients(potion_id, amount):
     df = read_csv_file()
-    ingredient_list = []
+    if df is None:
+        logging.error("No CSV file found or failed to read CSV file.")
+        return [0, 0, 0]
+    
     header_row_index = next((i for i, row in df.iterrows() if "ingredienti" in row.values), None)
+    if header_row_index is None:
+        logging.error("'ingredienti' header not found in CSV file.")
+        return [0, 0, 0]
+    ingredient_list = []
+    
     df = df.iloc[header_row_index:]
     if potion_id < 0 or potion_id >= len(crafting):
         return pd.DataFrame(columns=["Ingrediente", "Quantità", "Prezzo unitario", "Prezzo totale"])
@@ -229,8 +237,14 @@ def get_ingredients(potion_id, amount):
     
 def get_cost(potion_id, amount):
     df = read_csv_file()
+    if df is None:
+        logging.error("No CSV file found or failed to read CSV file.")
+        return [0, 0, 0]
     
     header_row_index = next((i for i, row in df.iterrows() if "ingredienti" in row.values), None)
+    if header_row_index is None:
+        logging.error("'ingredienti' header not found in CSV file.")
+        return [0, 0, 0]
     
     df = df.iloc[header_row_index:]     # Get data of the header row
     
