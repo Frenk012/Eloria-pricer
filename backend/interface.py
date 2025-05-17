@@ -2,13 +2,14 @@ import streamlit as st
 from manager import calculate_processing, get_ingredients
 import pandas as pd
 
-# Sidebar curtain to choose between elements
-element = st.selectbox(
-    "Scegli la tua pozza preferita:",
-    ["health di tier 0", "health di tier 1", "health di tier 2", "anthidot di tier 1", "anthidot di tier 2", "mending di tier 0", "mending di tier 1", "mending di tier 2",
+potions_elements = ["health di tier 0", "health di tier 1", "health di tier 2", "anthidot di tier 1", "anthidot di tier 2", "mending di tier 0", "mending di tier 1", "mending di tier 2",
      "slowness", "swiftness di tier 1", "swiftness di tier 2", "slow_fall", "jump1", "jump di tier 2", "weakness",
      "revify", "damage", "shrink", "levitation", "grow", "poison", "invisibility",
      "dolphin ", "combustion", "strength", "impact", "holy", "fire", "frost", "arcane"]
+
+# Sidebar curtain to choose between elements
+element = st.selectbox(
+    "Scegli la tua pozza preferita:", potions_elements
 )
 
 # Input cell for integer
@@ -35,12 +36,7 @@ if st.button("Calcola"):
 
     if checkbox_value:
         # Map element name to potion_id (index in crafting)
-        potion_names = [
-            "health di tier 0", "health di tier 1", "health di tier 2", "anthidot di tier 1", "anthidot di tier 2", "mending di tier 0", "mending di tier 1", "mending di tier 2",
-            "slowness", "swiftness di tier 1", "swiftness di tier 2", "slow_fall", "jump1", "jump di tier 2", "weakness",
-            "revify", "damage", "shrink", "levitation", "grow", "poison", "invisibility",
-            "dolphin ", "combustion", "strength", "impact", "holy", "fire", "frost", "arcane"
-        ]
+        potion_names = potions_elements
         try:
             potion_id = potion_names.index(element)
         except ValueError:
