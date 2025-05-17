@@ -12,6 +12,7 @@ potions_elements = ["health di tier 0", "health di tier 1", "health di tier 2", 
 st.sidebar.title("Seleziona una maestranza")
 categoria = st.sidebar.radio("", ("Alchimisti", "Fabbri", "Carpenteri"))
 
+
 # Add subcategories for Alchimisti
 if categoria == "Alchimisti":
     sotto_categoria = st.sidebar.radio("Sezione alchimista:", ("Pozioni", "Crafting"))
