@@ -1,3 +1,4 @@
 *.xlsx
 backend/src/data/Costi_ingredienti.xlsx
 data_converter.py
+*.pyc

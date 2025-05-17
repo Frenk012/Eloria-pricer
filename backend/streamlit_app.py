@@ -8,40 +8,60 @@ potions_elements = ["health di tier 0", "health di tier 1", "health di tier 2", 
      "revify", "damage", "shrink", "levitation", "grow", "poison", "invisibility",
      "dolphin ", "combustion", "strength", "impact", "holy", "fire", "frost", "arcane"]
 
-# Sidebar curtain to choose between elements
-element = st.selectbox(
-    "Scegli la tua pozza preferita:", potions_elements
-)
+# Sidebar to choose between "Alchimisti" and "Fattori"
+st.sidebar.title("Seleziona una maestranza")
+categoria = st.sidebar.radio("", ("Alchimisti", "Fabbri", "Carpenteri"))
 
-# Input cell for integer
-input_value = st.number_input("Metti quante pozze vuoi:", min_value=1, step=1, format="%d")
-
-# Checkbox for additional option
-checkbox_value = st.checkbox("Maggiori dettagli")
-            
-# Button to send values
-if st.button("Calcola"):
-    result = calculate_processing(element, input_value, False)
-
-    if isinstance(result, (list, tuple)) and len(result) >= 3:
-        message = (
-            f"No materiali: {round(result[0], 2) if isinstance(result[0], float) else result[0]} bronzini.\n"
-            f"Solo materiali: {round(result[1], 2) if isinstance(result[1], float) else result[1]} bronzini.\n"
-            f"Materiali e fuel: {round(result[2], 2) if isinstance(result[2], float) else result[2]} bronzini."
+# Add subcategories for Alchimisti
+if categoria == "Alchimisti":
+    sotto_categoria = st.sidebar.radio("Sezione alchimista:", ("Pozioni", "Crafting"))
+    if sotto_categoria == "Pozioni":
+        # Sidebar curtain to choose between elements
+        element = st.selectbox(
+            "Scegli la tua pozza preferita:", potions_elements
         )
-        # Capitalize each line after splitting by \n
-        message = "\n".join(line.capitalize() for line in message.split('\n'))
-        st.markdown(message.replace('\n', '  \n'))
-    else:
-        st.error("Errore nel calcolo: risultato non valido.")
 
-    if checkbox_value:
-        # Map element name to potion_id (index in crafting)
-        potion_names = potions_elements
-        try:
-            potion_id = potion_names.index(element)
-        except ValueError:
-            st.warning("Elemento non trovato.")
-        df = get_ingredients(potion_id, input_value)
-        st.markdown("### Dettaglio ingredienti")
-        st.dataframe(df, hide_index=True)
+        # Input cell for integer
+        input_value = st.number_input("Metti quante pozze vuoi:", min_value=1, step=1, format="%d")
+
+        # Checkbox for additional option
+        checkbox_value = st.checkbox("Maggiori dettagli")
+                    
+        # Button to send values
+        if st.button("Calcola"):
+            result = calculate_processing(element, input_value, False)
+
+            if isinstance(result, (list, tuple)) and len(result) >= 3:
+                message = (
+                    f"No materiali: {round(result[0], 2) if isinstance(result[0], float) else result[0]} bronzini.\n"
+                    f"Solo materiali: {round(result[1], 2) if isinstance(result[1], float) else result[1]} bronzini.\n"
+                    f"Materiali e fuel: {round(result[2], 2) if isinstance(result[2], float) else result[2]} bronzini."
+                )
+                # Capitalize each line after splitting by \n
+                message = "\n".join(line.capitalize() for line in message.split('\n'))
+                st.markdown(message.replace('\n', '  \n'))
+            else:
+                st.error("Errore nel calcolo: risultato non valido.")
+
+            if checkbox_value:
+                # Map element name to potion_id (index in crafting)
+                potion_names = potions_elements
+                try:
+                    potion_id = potion_names.index(element)
+                except ValueError:
+                    st.warning("Elemento non trovato.")
+                df = get_ingredients(potion_id, input_value)
+                st.markdown("### Dettaglio ingredienti")
+                st.dataframe(df, hide_index=True)
+else:
+    sotto_categoria = None
+
+if categoria == "Fabbri":
+    element = st.selectbox(
+        "Boh:", ["boh"]
+    )
+
+if categoria == "Carpenteri":
+    element = st.selectbox(
+        "Boh:", ["boh"]
+    )
