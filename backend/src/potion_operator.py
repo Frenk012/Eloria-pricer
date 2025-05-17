@@ -184,12 +184,14 @@ crafting = [
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def read_csv_file():
-    data_dir = os.path.join(os.getcwd(), "data")
+    # Use the directory of this script as the base path
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    data_dir = os.path.join(base_dir, "data")
     print(os.path.join(data_dir, '*.csv*'))
     for filepath in glob.glob(os.path.join(data_dir, '*.csv*')):
         print(f"filepath: {filepath}") 
         if not filepath:
-            raise FileNotFoundError(f"No .xlsx file found in {filepath}")
+            raise FileNotFoundError(f"No .csv file found in {data_dir}")
         return pd.read_csv(filepath)
     
 def get_ingredients(potion_id, amount):
