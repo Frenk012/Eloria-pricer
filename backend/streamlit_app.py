@@ -1,6 +1,8 @@
 import streamlit as st
 from manager import calculate_processing, get_ingredients
 
+# nativefier --name "ElysiumPricer" "https://eloria-pricer.streamlit.app/" --platform windows --arch x64
+
 potions_elements = ["health di tier 0", "health di tier 1", "health di tier 2", "anthidot di tier 1", "anthidot di tier 2", "mending di tier 0", "mending di tier 1", "mending di tier 2",
      "slowness", "swiftness di tier 1", "swiftness di tier 2", "slow_fall", "jump1", "jump di tier 2", "weakness",
      "revify", "damage", "shrink", "levitation", "grow", "poison", "invisibility",
