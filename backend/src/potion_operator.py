@@ -200,7 +200,7 @@ def get_ingredients(potion_id, amount):
         logging.error("No CSV file found or failed to read CSV file.")
         return [0, 0, 0]
     
-    header_row_index = next((i for i, row in df.iterrows() if "ingredienti" in row.values), None)
+    header_row_index = 0
     if header_row_index is None:
         logging.error("'ingredienti' header not found in CSV file.")
         return [0, 0, 0]
