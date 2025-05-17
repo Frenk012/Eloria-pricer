@@ -201,9 +201,6 @@ def get_ingredients(potion_id, amount):
         return [0, 0, 0]
     
     header_row_index = 0
-    if header_row_index is None:
-        logging.error("'ingredienti' header not found in CSV file.")
-        return [0, 0, 0]
     ingredient_list = []
     
     df = df.iloc[header_row_index:]
@@ -243,11 +240,7 @@ def get_cost(potion_id, amount):
         logging.error("No CSV file found or failed to read CSV file.")
         return [0, 0, 0]
     
-    header_row_index = next((i for i, row in df.iterrows() if "ingredienti" in row.values), None)
-    if header_row_index is None:
-        logging.error("'ingredienti' header not found in CSV file.")
-        return [0, 0, 0]
-    
+    header_row_index = 0
     df = df.iloc[header_row_index:]     # Get data of the header row
     
     cost_resoult = [0,0,0]
