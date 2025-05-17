@@ -55,11 +55,13 @@ crafting = [
             'carbonella', 1,
             'boccette', 1,
             'core fragment', 1,
+            'carne marcia', 1,
         ],
         [   # swiftness t1
             'carbonella', 1,
             'boccette', 1,
             'core fragment', 1,
+            'zucchero', 1,
         ],
         [   # swiftness t2
             'carbonella', 1,
@@ -71,11 +73,13 @@ crafting = [
             'carbonella', 1,
             'boccette', 1,
             'core fragment', 1,
+            'piume', 1,
         ],
         [   # jump T1
             'carbonella', 1,
             'boccette', 1,
             'core fragment', 1,
+            'item random', 1,
         ],
         [   # jump t2
             'carbonella', 1,
