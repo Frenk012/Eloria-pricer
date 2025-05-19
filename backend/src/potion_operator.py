@@ -79,7 +79,7 @@ crafting = [
             'carbonella', 1,
             'boccette', 1,
             'core fragment', 1,
-            'item random', 1,
+            'rabbit foot', 1,
         ],
         [   # jump t2
             'carbonella', 1,
@@ -157,6 +157,8 @@ crafting = [
             'carbonella', 2,
             'boccette', 1,
             'core fragment', 1,
+            'antracite', 1,
+            'item random', 1,
         ],
         [   # holy
             'carbonella', 2,
