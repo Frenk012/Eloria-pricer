@@ -13,6 +13,7 @@ potions_elements = ["health di tier 0", "health di tier 1", "health di tier 2", 
 if 'show_settings' not in st.session_state:
     st.session_state['show_settings'] = False
 
+
 # Initialize guadagno in session_state if not present
 if 'guadagno' not in st.session_state:
     st.session_state['guadagno'] = 0.0
