@@ -2,185 +2,9 @@ import pandas as pd
 import os
 import glob
 import logging
+from .crafting_ls import get_crafting
 
-crafting = [
-        [   # cura t0
-            'carbonella', 0.5,
-            'boccette', 1,
-            'heal cata 0', 0.5,
-        ],
-        [   # cura t1
-            'carbonella', 0.3333,
-            'boccette', 1,
-            'heal cata 1', 0.3333,
-        ],
-        [   # cura t2
-            'carbonella', 2,
-            'boccette', 1,
-            'heal cata 2', 1,
-        ],
-        [   # antidoto
-            'carbonella', 1,
-            'boccette', 1,
-            'brim powder', 1,
-            'carne marcia', 1,
-        ],
-        [   # antidoto t2
-            'carbonella', 1,
-            'revival star', 0.5,
-            'boccette', 0.5,
-            'organic resin', 0.5,
-        ],
-        [   # Mending T0
-            'carbonella', 1,
-            'core fragment', 1,
-            'boccette', 1,
-            'brim powder', 1,
-        ],
-        [   # Mending T1
-            'carbonella', 1,
-            'core fragment', 1,
-            'boccette', 1,
-            'organic resin', 1,
-            'spider eye', 1,
-        ],
-        [   # Mending T2
-            'carbonella', 2,
-            'core fragment', 1,
-            'boccette', 1,
-            'organic resin', 1,
-            'membrane', 1,
-        ],
-        [   # slowness
-            'carbonella', 1,
-            'boccette', 1,
-            'core fragment', 1,
-            'carne marcia', 1,
-        ],
-        [   # swiftness t1
-            'carbonella', 1,
-            'boccette', 1,
-            'core fragment', 1,
-            'zucchero', 1,
-        ],
-        [   # swiftness t2
-            'carbonella', 1,
-            'core fragment', 1,
-            'blaze powder', 1,
-            'item random', 1,
-        ],
-        [   # slow fall
-            'carbonella', 1,
-            'boccette', 1,
-            'core fragment', 1,
-            'piume', 1,
-        ],
-        [   # jump T1
-            'carbonella', 1,
-            'boccette', 1,
-            'core fragment', 1,
-            'rabbit foot', 1,
-        ],
-        [   # jump t2
-            'carbonella', 1,
-            'core fragment', 1,
-            'blaze powder', 1,
-            'item random', 1,
-        ],
-        [   # weakness
-            'carbonella', 1,
-            'boccette', 1,
-            'core fragment', 1,
-        ],
-        [   # revify
-            'carbonella', 1,
-            'boccette', 1,
-            'core fragment', 1,
-            'revival star', 1,
-        ],
-        [   # danno
-            'carbonella', 1,
-            'boccette', 1,
-            'core fragment', 1,
-            'spider eye', 1,
-        ],
-        [   # shrink
-            'carbonella', 1,
-            'boccette', 1,
-            'core fragment', 1,
-            'fungo marrone', 1,
-        ],
-        [   # levitation
-            'carbonella', 1,
-            'boccette', 1,
-            'core fragment', 1,
-            'ametista', 1,
-        ],
-        [   # grow
-            'carbonella', 1,
-            'boccette', 1,
-            'core fragment', 1,
-            'fungo rosso', 1,
-        ],
-        [   # poison
-            'carbonella', 1,
-            'boccette', 1,
-            'core fragment', 1,
-            'spider eye', 1,
-            'fungo marrone', 1,
-            'zucchero', 1,
-        ],
-        [   # invisibility
-            'carbonella', 2,
-            'boccette', 1,
-            'core fragment', 1,
-            'antracite', 1,
-            'item random', 1,
-        ],
-        [   # dolphin 
-            'carbonella', 2,
-            'boccette', 1,
-            'core fragment', 1,
-        ],
-        [   # combustion
-            'carbonella', 2,
-            'boccette', 1,
-            'core fragment', 1,
-            'antracite', 1,
-        ],
-        [   # strength
-            'carbonella', 2,
-            'boccette', 1,
-            'core fragment', 1,
-        ],
-        [   # impact
-            'carbonella', 2,
-            'boccette', 1,
-            'core fragment', 1,
-            'antracite', 1,
-            'item random', 1,
-        ],
-        [   # holy
-            'carbonella', 2,
-            'boccette', 1,
-            'core fragment', 1,
-        ],
-        [   # fire
-            'carbonella', 2,
-            'boccette', 1,
-            'core fragment', 1,
-        ],
-        [   # frost
-            'carbonella', 2,
-            'boccette', 1,
-            'core fragment', 1,
-        ],
-        [   # arcane
-            'carbonella', 2,
-            'boccette', 1,
-            'core fragment', 1,
-        ]
-    ]
+crafting = get_crafting()
 
 # Initialize logger
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -236,7 +60,7 @@ def get_ingredients(potion_id, amount):
         })
     return pd.DataFrame(ingredient_list)
     
-def get_cost(potion_id, amount):
+def get_cost(potion_id, amount, guadagno):
     df = read_csv_file()
     if df is None:
         logging.error("No CSV file found or failed to read CSV file.")
@@ -264,5 +88,9 @@ def get_cost(potion_id, amount):
                             cost_resoult[1] += ((float(ingredients[i+1]) * amount) * (float(costo_value)))
                         if src_ingredient == "boccette" or src_ingredient == "giare":
                             cost_resoult[2] += ((float(ingredients[i+1]) * amount) * (float(costo_value)))
-                        logging.info(f"Found ingredient: {str(ingredients[i])} in row: {src_ingredient} with amount: {str(ingredients[i+1])} and cost: {float(costo_value)} => {cost_resoult}")
+                        logging.info(f"Found ingredient: {str(ingredients[i])} in row: {src_ingredient} || with amount: {str(ingredients[i+1])} and cost: {float(costo_value)} => {cost_resoult}")
+    cost_resoult[0] += guadagno
+    cost_resoult[1] += guadagno
+    cost_resoult[2] += guadagno
+    logging.info(f"With guadagno: {guadagno}")
     return cost_resoult

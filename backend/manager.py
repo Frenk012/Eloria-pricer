@@ -1,6 +1,6 @@
 from src.potion_operator import get_ingredients, get_cost
 
-def calculate_processing(potion_id, amount, checkbox):
+def calculate_processing(potion_id, amount, checkbox, guadagno):
     Potions = {
         "health di tier 0": 0,
         "health di tier 1": 1,
@@ -41,6 +41,6 @@ def calculate_processing(potion_id, amount, checkbox):
     if checkbox:
         return get_ingredients(potion_selected, amount)
     else:
-        return get_cost(potion_selected, amount)
+        return get_cost(potion_selected, amount, guadagno)
     
     

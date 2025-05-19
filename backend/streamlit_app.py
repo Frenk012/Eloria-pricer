@@ -9,9 +9,45 @@ potions_elements = ["health di tier 0", "health di tier 1", "health di tier 2", 
      "dolphin ", "combustion", "strength", "impact", "holy", "fire", "frost", "arcane"]
 
 # Sidebar to choose between "Alchimisti" and "Fattori"
-st.sidebar.title("Seleziona una maestranza")
-categoria = st.sidebar.radio("", ("Alchimisti", "Fabbri", "Carpenteri"))
+# Add "Impostazioni" button at the top of the sidebar
+if 'show_settings' not in st.session_state:
+    st.session_state['show_settings'] = False
 
+# Initialize guadagno in session_state if not present
+if 'guadagno' not in st.session_state:
+    st.session_state['guadagno'] = 0.0
+
+# Inizializzazione dello stato
+if 'show_settings' not in st.session_state:
+    st.session_state['show_settings'] = False
+if 'guadagno' not in st.session_state:
+    st.session_state['guadagno'] = 0.0
+
+# Placeholder per il bottone
+button_placeholder = st.sidebar.empty()
+
+# Etichetta dinamica
+settings_label = "Impostazioni" if not st.session_state['show_settings'] else "Torna indietro"
+
+# Cattura del click sul bottone
+if button_placeholder.button(settings_label, key="settings_btn"):
+    st.session_state['show_settings'] = not st.session_state['show_settings']
+    # Forza il rerun per aggiornare subito l'etichetta del bottone
+    st.rerun()
+
+# Mostra le impostazioni se attive
+if st.session_state['show_settings']:
+    st.title("Impostazioni")
+    st.session_state['guadagno'] = st.number_input(
+        "Inserisci quanti bronzini vuoi guadagnare per pozione venduta:",
+        min_value=0.0, format="%.2f", step=1.0, value=st.session_state['guadagno']
+    )
+    st.stop()
+
+# Add some vertical space before the rest
+st.sidebar.markdown("---")
+st.sidebar.title("Seleziona una maestranza")
+categoria = st.sidebar.radio("v", ("Alchimisti", "Fabbri", "Carpenteri"), label_visibility="collapsed")
 
 # Add subcategories for Alchimisti
 if categoria == "Alchimisti":
@@ -30,7 +66,7 @@ if categoria == "Alchimisti":
                     
         # Button to send values
         if st.button("Calcola"):
-            result = calculate_processing(element, input_value, False)
+            result = calculate_processing(element, input_value, False, st.session_state['guadagno'])
 
             if isinstance(result, (list, tuple)) and len(result) >= 3:
                 message = (
