@@ -4,7 +4,7 @@ import glob
 import logging
 from .crafting_ls import get_crafting
 
-crafting = get_crafting()
+crafting = get_crafting("alchimista")
 
 # Initialize logger
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
